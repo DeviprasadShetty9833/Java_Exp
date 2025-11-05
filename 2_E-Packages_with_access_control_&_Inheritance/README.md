@@ -107,7 +107,7 @@ src/
          └── Clothing.java
 ```
 
-## 🧪 Example Execution
+## 🧪 Sample Output
 
 ```bash
 Product Details:
