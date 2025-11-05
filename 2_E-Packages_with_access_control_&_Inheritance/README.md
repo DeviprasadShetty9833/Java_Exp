@@ -93,6 +93,20 @@ By importing classes from one package into another, we can achieve **code reusab
 
 ---
 
+## Structure
+
+```bash
+src/
+ ├── app/
+ │   └── MainApp.java
+ └── catalog/
+     ├── Product.java
+     ├── electronics/
+     │   └── Electronics.java
+     └── clothing/
+         └── Clothing.java
+```
+
 ## 🧪 Example Execution
 
 ```bash
