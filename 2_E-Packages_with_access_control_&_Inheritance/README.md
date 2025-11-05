@@ -28,41 +28,6 @@ The system should:
 
 ---
 
-## 🧭 Objectives
-
-* Understand the concept of **Java packages** for organizing classes
-* Implement **inheritance across multiple packages**
-* Explore **access control modifiers** (`private`, `protected`, `public`) in real-world design
-* Develop **modular and maintainable** Java applications
-
----
-
-## 🏁 Outcomes
-
-After completing this experiment, you will be able to:
-
-* Create and use **Java packages**
-* Apply **inheritance** across packages
-* Use **access modifiers** to enforce encapsulation
-* Build scalable, **modular Java applications**
-
----
-
-## 🧠 Prerequisites
-
-* Knowledge of **Java classes and objects**
-* Understanding of **inheritance and encapsulation**
-* Familiarity with **directory structures** and **command-line compilation**
-
----
-
-## ⚙️ Requirements
-
-* **JDK 8 or above**
-* Any Java IDE (Eclipse, IntelliJ, NetBeans) or command-line setup
-
----
-
 ## 📖 Brief Theory
 
 ### 🔹 Packages
@@ -150,13 +115,43 @@ Price: 3200.0
 
 ---
 
+## 🧭 Objectives
+
+* Understand the concept of **Java packages** for organizing classes
+* Implement **inheritance across multiple packages**
+* Explore **access control modifiers** (`private`, `protected`, `public`) in real-world design
+* Develop **modular and maintainable** Java applications
+
+---
+
+## 🏁 Outcomes
+
+After completing this experiment, you will be able to:
+
+* Create and use **Java packages**
+* Apply **inheritance** across packages
+* Use **access modifiers** to enforce encapsulation
+* Build scalable, **modular Java applications**
+
+---
+
+## 🧠 Prerequisites
+
+* Knowledge of **Java classes and objects**
+* Understanding of **inheritance and encapsulation**
+* Familiarity with **directory structures** and **command-line compilation**
+
+---
+
+## ⚙️ Requirements
+
+* **JDK 8 or above**
+* Any Java IDE (Eclipse, IntelliJ, NetBeans) or command-line setup
+
+---
+
 ## 🧾 Conclusion
 
 This experiment successfully demonstrates how **Java packages**, **access control**, and **inheritance** can be combined to build a modular and scalable application.
 By organizing classes into meaningful packages, the system ensures **code clarity**, **reusability**, and **encapsulation**, which are vital for large-scale software projects.
 
----
-
-**Developed by:** [Your Name]
-**Course:** Java Programming Laboratory
-**Experiment:** No. 2 – *E-Commerce Product Catalog System*
