@@ -93,7 +93,7 @@ By importing classes from one package into another, we can achieve **code reusab
 
 ---
 
-## Structure
+## 🧩 Folder Structure
 
 ```bash
 src/
