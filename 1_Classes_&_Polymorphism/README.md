@@ -41,6 +41,41 @@ Each subclass implements its **own logic** for fare calculation and ETA.
 
 ---
 
+## 💻 **Code Structure**
+
+```
+Transport.java        → Abstract base class
+Bus.java              → Derived class (fare + ETA logic)
+Metro.java            → Derived class (fare + ETA logic)
+Auto.java             → Derived class (fare + ETA logic)
+EBike.java            → Derived class (fare + ETA logic)
+SmartTransportDemo.java → Main driver class demonstrating polymorphism
+```
+
+---
+
+## ⚙️ **Compilation & Execution (Command Line)**
+
+```
+cd SmartTransportSystem
+javac app/MainApp.java transport/*.java
+java app.MainApp
+```
+
+---
+
+## 🧮 **Sample Output**
+
+```
+=== Smart Transport Booking System ===
+Bus: Fare = ₹120.0, ETA = 45 minutes
+Metro: Fare = ₹80.0, ETA = 25 minutes
+Auto: Fare = ₹150.0, ETA = 35 minutes
+E-Bike: Fare = ₹60.0, ETA = 15 minutes
+```
+
+---
+
 ## 📘 **Brief Theory**
 
 ### 🧱 **Polymorphism**
@@ -55,31 +90,6 @@ Occurs when a subclass provides a specific implementation of a method declared i
 ### ⚡ **Runtime Polymorphism (Dynamic Binding)**
 
 When the method call is resolved **at runtime**, depending on the object’s actual type—not the reference type.
-
----
-
-## 💻 **Code Structure**
-
-```
-Transport.java        → Abstract base class
-Bus.java              → Derived class (fare + ETA logic)
-Metro.java            → Derived class (fare + ETA logic)
-Auto.java             → Derived class (fare + ETA logic)
-EBike.java            → Derived class (fare + ETA logic)
-SmartTransportDemo.java → Main driver class demonstrating polymorphism
-```
-
----
-
-## 🧮 **Sample Output**
-
-```
-=== Smart Transport Booking System ===
-Bus: Fare = ₹120.0, ETA = 45 minutes
-Metro: Fare = ₹80.0, ETA = 25 minutes
-Auto: Fare = ₹150.0, ETA = 35 minutes
-E-Bike: Fare = ₹60.0, ETA = 15 minutes
-```
 
 ---
 
