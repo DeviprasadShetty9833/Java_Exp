@@ -1,8 +1,4 @@
-# 🧭 Experiment No. 1
-
-### **Title:** Write a Java program for given problem demonstrating *Classes and Polymorphism*
-
----
+# Experiment No. 1
 
 ## 🎯 **Aim**
 
