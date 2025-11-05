@@ -128,10 +128,3 @@ By modeling different transport modes (Bus, Metro, Auto, E-Bike), we demonstrate
 The experiment successfully demonstrates **Classes and Polymorphism** in Java.
 By using **method overriding** and **dynamic binding**, different transport modes exhibit distinct behaviors while sharing a common interface.
 This approach promotes **code reusability, scalability,** and **maintainability** — key pillars of object-oriented programming.
-
----
-
-📂 *Author:* **[Your Name Here]**
-📘 *Subject:* *Object-Oriented Programming in Java*
-🏛️ *Institution:* *[Your College Name]*
-📅 *Experiment Date:* *[DD/MM/YYYY]*
