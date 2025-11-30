@@ -100,8 +100,8 @@ When the method call is resolved **at runtime**, depending on the object’s act
 
 ### **Q: What are the types of polymorphism in Java?**
 **A:** 
-- **Compile-time Polymorphism**: Method overloading (same method name, different parameters)
-- **Runtime Polymorphism**: Method overriding (same method signature in parent and child classes)
+- **Compile-time Polymorphism**: Method overloading (same method name, different parameters & implementation)
+- **Runtime Polymorphism**: Method overriding (same method name & parameters, different implementation)
 
 ### **Q: What is method overriding?**
 **A:** When a subclass provides a specific implementation of a method that is already defined in its parent class. It must have the same name, return type, and parameters.
