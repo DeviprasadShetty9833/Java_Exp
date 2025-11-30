@@ -67,11 +67,54 @@ java app.MainApp
 ## 🧮 **Sample Output**
 
 ```
-=== Smart Transport Booking System ===
-Bus: Fare = ₹120.0, ETA = 45 minutes
-Metro: Fare = ₹80.0, ETA = 25 minutes
-Auto: Fare = ₹150.0, ETA = 35 minutes
-E-Bike: Fare = ₹60.0, ETA = 15 minutes
+-- Smart Transport Booking System ---
+Demonstrating Runtime Polymorphism
+
+=========================================
+  Smart Transport Receipt (Bus)
+=========================================
+From: City Center
+To: University
+Distance: 12 km
+Estimated Time: 24 minutes
+Total Fare: $34.00
+Thank you for using Smart Transport!
+=========================================
+
+=========================================
+  Smart Transport Receipt (Metro)
+=========================================
+From Station: Main Station
+To Station: North Plaza
+Distance: 7 km
+Estimated Time: 13 minutes
+Total Fare: $30.00
+Thank you for using Smart Transport!
+=========================================
+
+=========================================
+  Smart Transport Receipt (Auto-rickshaw)
+=========================================
+Pickup: Hospital
+Drop: Railway Station
+Distance: 5 km
+Estimated Time: 8 minutes
+Total Fare: $65.00
+Thank you for using Smart Transport!
+=========================================
+
+=========================================
+  Smart Transport Receipt (E-Bike)
+=========================================
+Start: Park
+End: Library
+Distance: 3 km
+Estimated Time: 7 minutes
+Total Fare: $9.00
+Thank you for using Smart Transport!
+=========================================
+
+--- Demonstration Complete ---
 ```
 
 ---
