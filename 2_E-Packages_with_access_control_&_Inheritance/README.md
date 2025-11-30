@@ -28,6 +28,52 @@ The system should:
 
 ---
 
+## 🧩 Folder Structure
+
+```bash
+src/
+ ├── app/
+ │   └── MainApp.java
+ └── catalog/
+     ├── Product.java
+     ├── electronics/
+     │   └── Electronics.java
+     └── clothing/
+         └── Clothing.java
+```
+
+## Command Line:
+```
+# Compile
+javac -d . catalog/Product.java
+javac -d . catalog/electronics/Electronics.java
+javac -d . catalog/clothing/Clothing.java
+javac -d . app/MainApp.java
+
+# Run
+java app.MainApp
+```
+
+## 🧪 Sample Output
+
+```bash
+Product Details:
+
+--- Electronics ---
+ID: 101
+Name: Laptop
+Brand: Dell
+Warranty: 2 years
+Price: 55000.0
+
+--- Clothing ---
+ID: 202
+Name: Jacket
+Size: L
+Material: Leather
+Price: 3200.0
+```
+
 ## 📖 Brief Theory
 
 ### 🔹 Packages
@@ -91,53 +137,7 @@ By importing classes from one package into another, we can achieve **code reusab
   * Access modifier behavior
   * Dynamic method invocation (`displayDetails()` override)
 
----
 
-## 🧩 Folder Structure
-
-```bash
-src/
- ├── app/
- │   └── MainApp.java
- └── catalog/
-     ├── Product.java
-     ├── electronics/
-     │   └── Electronics.java
-     └── clothing/
-         └── Clothing.java
-```
-
-## 🧪 Sample Output
-
-```bash
-Product Details:
-
---- Electronics ---
-ID: 101
-Name: Laptop
-Brand: Dell
-Warranty: 2 years
-Price: 55000.0
-
---- Clothing ---
-ID: 202
-Name: Jacket
-Size: L
-Material: Leather
-Price: 3200.0
-```
-
-## Command Line:
-```
-# Compile
-javac -d . catalog/Product.java
-javac -d . catalog/electronics/Electronics.java
-javac -d . catalog/clothing/Clothing.java
-javac -d . app/MainApp.java
-
-# Run
-java app.MainApp
-```
 
 ---
 
