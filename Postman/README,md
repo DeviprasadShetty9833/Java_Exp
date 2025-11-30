@@ -1,0 +1,393 @@
+# **Postman API Testing Viva Theory**
+
+## **1. Postman Fundamentals**
+
+### **Q: What is Postman and why use it?**
+**A:** Postman is a collaborative API development platform that enables:
+- **API Testing**: Manual and automated testing of REST APIs
+- **Documentation**: Generate and maintain API documentation
+- **Mock Servers**: Simulate API responses before development
+- **Monitoring**: Schedule API health checks
+- **Collaboration**: Share collections with team members
+
+### **Q: What are the key components of Postman?**
+**A:**
+- **Collections**: Group of related API requests
+- **Environments**: Sets of variables for different environments (dev, prod)
+- **Workspaces**: Collaborative spaces for teams
+- **Variables**: Dynamic values that can be reused
+- **Tests**: JavaScript code to validate responses
+- **Pre-request Scripts**: Code executed before sending requests
+
+---
+
+## **2. HTTP Methods & Status Codes**
+
+### **Q: Explain HTTP methods used in REST API testing**
+**A:**
+
+| Method | Purpose | Status Codes |
+|--------|---------|--------------|
+| **POST** | Create new resource | 201 Created, 400 Bad Request |
+| **GET** | Retrieve resources | 200 OK, 404 Not Found |
+| **PUT** | Update existing resource | 200 OK, 404 Not Found |
+| **DELETE** | Remove resource | 204 No Content, 404 Not Found |
+
+### **Q: Common HTTP status codes and their meanings**
+**A:**
+- **200 OK**: Successful request
+- **201 Created**: Resource created successfully
+- **204 No Content**: Successful but no content returned
+- **400 Bad Request**: Invalid input/data
+- **404 Not Found**: Resource not found
+- **405 Method Not Allowed**: Wrong HTTP method
+- **500 Internal Server Error**: Server-side error
+
+---
+
+## **3. Postman Collection Structure**
+
+### **Q: How to organize API requests in Postman?**
+**A:**
+```
+Student Records API Collection/
+├── Student Management
+│   ├── Create Student (POST)
+│   ├── Get All Students (GET)
+│   ├── Get Student by ID (GET)
+│   ├── Update Student (PUT)
+│   └── Delete Student (DELETE)
+└── Test Scenarios
+    ├── Positive Tests
+    └── Negative Tests
+```
+
+### **Q: What are environments and why use them?**
+**A:** Environments allow you to switch between different configurations:
+```javascript
+// Environment variables
+{
+  "baseUrl": "http://localhost:8080/api",
+  "authToken": "bearer_token_here"
+}
+```
+**Usage in requests**: `{{baseUrl}}/students`
+
+---
+
+## **4. Request Configuration**
+
+### **Q: How to configure different types of requests?**
+**A:**
+
+**POST Request (Create Student):**
+```http
+POST {{baseUrl}}/students
+Content-Type: application/json
+
+{
+  "rollNumber": "CS001",
+  "firstName": "Asha",
+  "lastName": "Kumar",
+  "email": "asha@example.com",
+  "department": "CS",
+  "year": 2,
+  "gpa": 8.5
+}
+```
+
+**GET Request (Get Student by ID):**
+```http
+GET {{baseUrl}}/students/1
+```
+
+**PUT Request (Update Student):**
+```http
+PUT {{baseUrl}}/students/1
+Content-Type: application/json
+
+{
+  "firstName": "Asha Updated",
+  "gpa": 9.0
+}
+```
+
+**DELETE Request:**
+```http
+DELETE {{baseUrl}}/students/1
+```
+
+---
+
+## **5. Testing and Validation**
+
+### **Q: How to write tests in Postman?**
+**A:** Using JavaScript in the "Tests" tab:
+
+**Basic Status Code Tests:**
+```javascript
+// Check if response status is 200
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+// Check if response has JSON body
+pm.test("Response has JSON body", function () {
+    pm.response.to.be.json;
+});
+```
+
+**Response Body Validation:**
+```javascript
+// Validate response structure
+pm.test("Response contains student data", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData).to.have.property('id');
+    pm.expect(jsonData).to.have.property('firstName');
+    pm.expect(jsonData.firstName).to.equal('Asha');
+});
+
+// Validate specific values
+pm.test("Student GPA is within valid range", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.gpa).to.be.within(0, 10);
+});
+```
+
+### **Q: How to test error scenarios?**
+**A:**
+```javascript
+// Test for 404 Not Found
+pm.test("Resource not found", function () {
+    pm.response.to.have.status(404);
+});
+
+// Test for 400 Bad Request
+pm.test("Bad request for invalid input", function () {
+    pm.response.to.have.status(400);
+    pm.expect(pm.response.text()).to.include('Validation failed');
+});
+```
+
+---
+
+## **6. Test Automation**
+
+### **Q: How to automate test execution?**
+**A:** Using **Collection Runner**:
+1. Select collection to run
+2. Choose environment
+3. Set iterations and delay
+4. View detailed test results
+
+### **Q: What are pre-request scripts?**
+**A:** Code executed before sending the request:
+```javascript
+// Generate dynamic data
+const randomId = Math.floor(Math.random() * 1000);
+pm.collectionVariables.set("randomStudentId", randomId);
+
+// Set timestamp
+const timestamp = new Date().toISOString();
+pm.collectionVariables.set("timestamp", timestamp);
+```
+
+---
+
+## **7. Positive Test Cases**
+
+### **Q: What are positive test scenarios?**
+**A:**
+
+**1. Create Student (Success):**
+```http
+POST {{baseUrl}}/students
+{
+  "rollNumber": "CS001",
+  "firstName": "Asha",
+  "email": "asha@example.com",
+  "year": 2,
+  "gpa": 8.5
+}
+```
+**Expected**: 201 Created with student ID
+
+**2. Get All Students:**
+```http
+GET {{baseUrl}}/students
+```
+**Expected**: 200 OK with array of students
+
+**3. Get Student by ID:**
+```http
+GET {{baseUrl}}/students/1
+```
+**Expected**: 200 OK with student details
+
+**4. Update Student:**
+```http
+PUT {{baseUrl}}/students/1
+{
+  "gpa": 9.0
+}
+```
+**Expected**: 200 OK with updated student
+
+**5. Delete Student:**
+```http
+DELETE {{baseUrl}}/students/1
+```
+**Expected**: 204 No Content
+
+---
+
+## **8. Negative Test Cases**
+
+### **Q: What are negative test scenarios?**
+**A:**
+
+**1. Create Student with Invalid Email:**
+```http
+POST {{baseUrl}}/students
+{
+  "rollNumber": "CS002",
+  "firstName": "Raj",
+  "email": "invalid-email",
+  "year": 2,
+  "gpa": 8.5
+}
+```
+**Expected**: 400 Bad Request
+
+**2. Get Non-Existent Student:**
+```http
+GET {{baseUrl}}/students/9999
+```
+**Expected**: 404 Not Found
+
+**3. Create Student with Duplicate Roll Number:**
+```http
+POST {{baseUrl}}/students
+{
+  "rollNumber": "CS001",  // Already exists
+  "firstName": "Duplicate",
+  "email": "duplicate@example.com",
+  "year": 3,
+  "gpa": 7.5
+}
+```
+**Expected**: 400 Bad Request (Constraint violation)
+
+**4. Invalid GPA Value:**
+```http
+POST {{baseUrl}}/students
+{
+  "rollNumber": "CS003",
+  "firstName": "Test",
+  "email": "test@example.com",
+  "year": 2,
+  "gpa": 11.0  // Invalid: > 10.0
+}
+```
+**Expected**: 400 Bad Request
+
+---
+
+## **9. Environment Variables & Dynamic Data**
+
+### **Q: How to use variables in Postman?**
+**A:**
+```javascript
+// Set variable from response
+pm.test("Set student ID variable", function () {
+    var jsonData = pm.response.json();
+    pm.collectionVariables.set("studentId", jsonData.id);
+});
+
+// Use variable in subsequent requests
+// GET {{baseUrl}}/students/{{studentId}}
+```
+
+### **Q: How to handle authentication?**
+**A:**
+```javascript
+// Set auth token from login response
+pm.test("Save auth token", function () {
+    var jsonData = pm.response.json();
+    pm.collectionVariables.set("authToken", jsonData.token);
+});
+
+// Use in Authorization header
+// Authorization: Bearer {{authToken}}
+```
+
+---
+
+## **10. Best Practices for API Testing**
+
+### **Q: What are API testing best practices?**
+**A:**
+- **Test all HTTP methods** for each endpoint
+- **Validate response codes** and error messages
+- **Test edge cases** and boundary values
+- **Use environment variables** for different configurations
+- **Organize tests** in logical folders
+- **Add descriptive test names** and comments
+- **Run tests in sequence** when dependencies exist
+- **Export and version** collections
+
+### **Q: How to document API tests?**
+**A:**
+- **Add descriptions** to each request
+- **Use folders** to group related tests
+- **Include examples** of request/response
+- **Document pre-requisites** and test data
+- **Add setup/teardown** instructions
+
+---
+
+## **11. Common Issues & Troubleshooting**
+
+### **Q: Common Postman errors and solutions**
+**A:**
+
+**1. "Could not get any response"**
+- Check if API server is running
+- Verify URL and port
+- Check firewall/network settings
+
+**2. "404 Not Found"**
+- Verify endpoint URL
+- Check if resource exists
+- Validate path parameters
+
+**3. "405 Method Not Allowed"**
+- Use correct HTTP method
+- Check endpoint supports the method
+
+**4. "400 Bad Request"**
+- Validate request body format
+- Check required fields
+- Verify data types and constraints
+
+---
+
+## **Quick Revision Checklist:**
+
+✅ **Postman Basics**: Collections, Environments, Variables  
+✅ **HTTP Methods**: POST, GET, PUT, DELETE  
+✅ **Status Codes**: 200, 201, 400, 404, 500  
+✅ **Test Scripts**: JavaScript validation in Tests tab  
+✅ **Positive Tests**: Valid scenarios with expected success  
+✅ **Negative Tests**: Invalid scenarios with proper error handling  
+✅ **Automation**: Collection Runner, environment variables  
+✅ **Best Practices**: Organization, documentation, sequencing  
+
+## **Common Viva Questions:**
+- "What is the difference between collection and environment variables?"
+- "How do you test API error scenarios in Postman?"
+- "What are pre-request scripts and when to use them?"
+- "How to handle authentication in API testing?"
+- "What is the importance of negative testing?"
+
+**Remember**: Postman is not just for testing - it's a complete API development environment that supports the entire API lifecycle from design to monitoring!
