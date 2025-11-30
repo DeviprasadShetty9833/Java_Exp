@@ -127,6 +127,18 @@ Material: Leather
 Price: 3200.0
 ```
 
+## Command Line:
+```
+# Compile
+javac -d . catalog/Product.java
+javac -d . catalog/electronics/Electronics.java
+javac -d . catalog/clothing/Clothing.java
+javac -d . app/MainApp.java
+
+# Run
+java app.MainApp
+```
+
 ---
 
 ## 🧭 Objectives
