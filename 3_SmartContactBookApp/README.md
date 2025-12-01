@@ -47,6 +47,12 @@ contactbook/
 └── README.md
 ```
 
+# Command 
+```
+javac src/contactbook/*.java -d out/
+
+java -cp out contactbook.SmartContactBookApp
+```
 ---
 
 # **Collections & Exception Handling Viva Theory**
