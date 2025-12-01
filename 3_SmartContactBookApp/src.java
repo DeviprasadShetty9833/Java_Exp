@@ -1,204 +1,228 @@
+
 // File 1: contactbook/Contact.java
 
-Package contactbook;
+package contactbook;
 
 // Represents a single contact
-Public class Contact {
-    Private String name;
-    Private String phoneNumber;
-    Private String email;
-    Private String category; // e.g., Student, Faculty, Staff
+public class Contact {
+    private String name;
+    private String phoneNumber;
+    private String email;
+    private String category; // e.g., Student, Faculty, Staff
 
-    Public Contact(String name, String phoneNumber, String email, String category) {
-        This.name = name;
-        This.phoneNumber = phoneNumber;
-        This.email = email;
-        This.category = category;
+    public Contact(String name, String phoneNumber, String email, String category) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.category = category;
     }
 
-    // Getters and setters
-    Public String getName() { return name; }
-    Public String getPhoneNumber() { return phoneNumber; }
-    Public String getEmail() { return email; }
-    Public String getCategory() { return category; }
+    // Getters
+    public String getName() { return name; }
+    public String getPhoneNumber() { return phoneNumber; }
+    public String getEmail() { return email; }
+    public String getCategory() { return category; }
 
-    Public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
-    Public void setEmail(String email) { this.email = email; }
+    // Setters
+    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+    public void setEmail(String email) { this.email = email; }
 
     @Override
-    Public String toString() {
-        Return String.format(“Name: %s | Phone: %s | Email: %s | Category: %s”,
-                Name, phoneNumber, email, category);
+    public String toString() {
+        return String.format(
+                "Name: %s | Phone: %s | Email: %s | Category: %s",
+                name, phoneNumber, email, category
+        );
     }
 }
+
+
 
 // File 2: contactbook/ContactNotFoundException.java
 
-Package contactbook;
+package contactbook;
 
 // Custom exception for missing contacts
-Public class ContactNotFoundException extends Exception {
-    Public ContactNotFoundException(String message) {
-        Super(message);
+public class ContactNotFoundException extends Exception {
+    public ContactNotFoundException(String message) {
+        super(message);
     }
 }
 
+
 // File 3: contactbook/ContactManager.java
 
-Package contactbook;
+package contactbook;
 
-Import java.util.*;
-Public class ContactManager {
-    Private ArrayList<Contact> contacts = new ArrayList<>();
-    Private HashMap<String, List<Contact>> categorizedContacts = new HashMap<>();
+import java.util.*;
+
+public class ContactManager {
+
+    private ArrayList<Contact> contacts = new ArrayList<>();
+    private HashMap<String, List<Contact>> categorizedContacts = new HashMap<>();
 
     // Add a contact to both ArrayList and HashMap
-    Public void addContact(Contact c) {
-        Contacts.add©;
+    public void addContact(Contact c) {
+        contacts.add(c);
 
         categorizedContacts.putIfAbsent(c.getCategory(), new ArrayList<>());
-        categorizedContacts.get(c.getCategory()).add©;
+        categorizedContacts.get(c.getCategory()).add(c);
 
-        System.out.println(“ Contact added successfully!”);
+        System.out.println("Contact added successfully!");
     }
 
     // Search by name or phone
-    Public Contact searchContact(String keyword) throws ContactNotFoundException {
-        For (Contact c : contacts) {
-            If (c.getName().equalsIgnoreCase(keyword) || c.getPhoneNumber().equals(keyword)) {
-                Return c;
+    public Contact searchContact(String keyword) throws ContactNotFoundException {
+        for (Contact c : contacts) {
+            if (c.getName().equalsIgnoreCase(keyword) ||
+                c.getPhoneNumber().equals(keyword)) {
+                return c;
             }
         }
-        Throw new ContactNotFoundException(“ Contact not found for: “ + keyword);
+        throw new ContactNotFoundException("Contact not found for: " + keyword);
     }
 
     // Delete contact
-    Public void deleteContact(String keyword) throws ContactNotFoundException {
+    public void deleteContact(String keyword) throws ContactNotFoundException {
         Contact toRemove = searchContact(keyword);
-        Contacts.remove(toRemove);
+        contacts.remove(toRemove);
         categorizedContacts.get(toRemove.getCategory()).remove(toRemove);
-        System.out.println(“Contact deleted successfully!”);
+
+        System.out.println("Contact deleted successfully!");
     }
 
     // Display all contacts grouped by category
-    Public void displayContactsByCategory() {
-        If (categorizedContacts.isEmpty()) {
-            System.out.println(“No contacts available.”);
-            Return;
+    public void displayContactsByCategory() {
+        if (categorizedContacts.isEmpty()) {
+            System.out.println("No contacts available.");
+            return;
         }
 
-        System.out.println(“ Contact List (Grouped by Category):”);
-        For (String category : categorizedContacts.keySet()) {
-            System.out.println(“\n[“ + category + “]”);
-            For (Contact c : categorizedContacts.get(category)) {
-                System.out.println(“  - “ + c);
+        System.out.println("Contact List (Grouped by Category):");
+        for (String category : categorizedContacts.keySet()) {
+            System.out.println("\n[" + category + "]");
+            for (Contact c : categorizedContacts.get(category)) {
+                System.out.println("  - " + c);
             }
         }
     }
 
     // Utility to validate inputs
-    Public static boolean isValidPhone(String phone) {
-        Return phone.matches(\\d{10});
+    public static boolean isValidPhone(String phone) {
+        return phone.matches("\\d{10}");
     }
 
-    Public static boolean isValidEmail(String email) {
-        Return email.contains(“@”) && email.contains(“.”);
+    public static boolean isValidEmail(String email) {
+        return email.contains("@") && email.contains(".");
     }
 }
 
 
+---
 
 // File 4: app/SmartContactBookApp.java
 
-Package app;
+package app;
 
-Import contactbook.*;
-Import java.util.*;
+import contactbook.*;
+import java.util.*;
 
-Public class SmartContactBookApp {
-    Public static void main(String[] args) {
+public class SmartContactBookApp {
+    public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
         ContactManager manager = new ContactManager();
 
-        Int choice = 0;
-        Try {
-            Do {
-                System.out.println(“\n===== SMART CONTACT BOOK =====”);
-                System.out.println(“1. Add Contact”);
-                System.out.println(“2. Search Contact”);
-                System.out.println(“3. Delete Contact”);
-                System.out.println(“4. Display All Contacts”);
-                System.out.println(“5. Exit”);
-                System.out.print(“Enter your choice: “);
-                Choice = Integer.parseInt(sc.nextLine());
+        int choice = 0;
 
-                Switch (choice) {
-                    Case 1:
-                        System.out.print(“Enter Name: “);
+        try {
+            do {
+                System.out.println("\n===== SMART CONTACT BOOK =====");
+                System.out.println("1. Add Contact");
+                System.out.println("2. Search Contact");
+                System.out.println("3. Delete Contact");
+                System.out.println("4. Display All Contacts");
+                System.out.println("5. Exit");
+                System.out.print("Enter your choice: ");
+
+                choice = Integer.parseInt(sc.nextLine());
+
+                switch (choice) {
+
+                    case 1:
+                        System.out.print("Enter Name: ");
                         String name = sc.nextLine();
-                        System.out.print(“Enter Phone (10 digits): “);
+                        System.out.print("Enter Phone (10 digits): ");
                         String phone = sc.nextLine();
-                        System.out.print(“Enter Email: “);
+                        System.out.print("Enter Email: ");
                         String email = sc.nextLine();
-                        System.out.print(“Enter Category (Student/Faculty/Staff): “);
+                        System.out.print("Enter Category (Student/Faculty/Staff): ");
                         String category = sc.nextLine();
 
-                        Try {
-                            If (name.isBlank() || !ContactManager.isValidPhone(phone) || !ContactManager.isValidEmail(email))
-                                Throw new IllegalArgumentException(“Invalid input! Please check phone or email format.”);
+                        try {
+                            if (name.isBlank() ||
+                                !ContactManager.isValidPhone(phone) ||
+                                !ContactManager.isValidEmail(email)) {
+                                throw new IllegalArgumentException("Invalid input! Please check phone or email format.");
+                            }
 
                             Contact c = new Contact(name, phone, email, category);
-                            Manager.addContact©;
+                            manager.addContact(c);
+
                         } catch (IllegalArgumentException e) {
-                            System.out.println(“Error: “ + e.getMessage());
+                            System.out.println("Error: " + e.getMessage());
                         } finally {
-                            System.out.println(“Operation completed.\n”);
+                            System.out.println("Operation completed.\n");
                         }
-                        Break;
+                        break;
 
-                    Case 2:
-                        System.out.print(“Enter Name or Phone to search: “);
+                    case 2:
+                        System.out.print("Enter Name or Phone to search: ");
                         String searchKey = sc.nextLine();
-                        Try {
+
+                        try {
                             Contact found = manager.searchContact(searchKey);
-                            System.out.println(“ Contact Found: “ + found);
+                            System.out.println("Contact Found: " + found);
                         } catch (ContactNotFoundException e) {
                             System.out.println(e.getMessage());
                         } finally {
-                            System.out.println(“Operation completed.\n”);
+                            System.out.println("Operation completed.\n");
                         }
-                        Break;
+                        break;
 
-                    Case 3:
-                        System.out.print(“Enter Name or Phone to delete: “);
+                    case 3:
+                        System.out.print("Enter Name or Phone to delete: ");
                         String deleteKey = sc.nextLine();
-                        Try {
-                            Manager.deleteContact(deleteKey);
+
+                        try {
+                            manager.deleteContact(deleteKey);
                         } catch (ContactNotFoundException e) {
                             System.out.println(e.getMessage());
                         } finally {
-                            System.out.println(“Operation completed.\n”);
+                            System.out.println("Operation completed.\n");
                         }
-                        Break;
+                        break;
 
-                    Case 4:
-                        Manager.displayContactsByCategory();
-                        Break;
+                    case 4:
+                        manager.displayContactsByCategory();
+                        break;
 
-                    Case 5:
-                        System.out.println(“Exiting… Goodbye!”);
-                        Break;
+                    case 5:
+                        System.out.println("Exiting… Goodbye!");
+                        break;
 
-                    Default:
-                        System.out.println(“Invalid choice! Try again.”);
+                    default:
+                        System.out.println("Invalid choice! Try again.");
                 }
 
             } while (choice != 5);
+
         } catch (Exception e) {
-            System.out.println(“Unexpected error: “ + e.getMessage());
+            System.out.println("Unexpected error: " + e.getMessage());
+
         } finally {
-            Sc.close();
-            System.out.println(“Application Terminated.”);
+            sc.close();
+            System.out.println("Application Terminated.");
         }
     }
 }
