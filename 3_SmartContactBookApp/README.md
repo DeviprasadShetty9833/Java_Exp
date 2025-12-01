@@ -33,6 +33,22 @@ Brief Theory
         ◦ finally: Executes code regardless of exception occurrence (e.g., cleanup tasks).
     • Custom Exceptions: User-defined exceptions for specific error conditions (e.g., ContactNotFoundException).
 
+
+# Project Structure:
+
+```
+contactbook/
+├── src/
+│   └── contactbook/
+│       ├── Contact.java
+│       ├── ContactNotFoundException.java
+│       ├── ContactManager.java
+│       └── SmartContactBookApp.java
+└── README.md
+```
+
+---
+
 # **Collections & Exception Handling Viva Theory**
 
 ## **1. Collections Framework Fundamentals**
