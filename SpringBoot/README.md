@@ -25,6 +25,16 @@ Springboot folder structure
     └── target
 ```
 
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    EcoGauge Application                     │
+├─────────────────────────────────────────────────────────────┤
+│  controller → service → repository → model → config/security│
+└─────────────────────────────────────────────────────────────┘
+    ↓           ↓           ↓           ↓           ↓
+  HTTP       Business     Data       Data       Security &
+Requests     Logic        Access     Structure  Configuration
+```
 
 # **Spring Boot REST API Viva Theory**
 
