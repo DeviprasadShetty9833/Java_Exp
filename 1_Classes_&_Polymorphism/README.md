@@ -52,8 +52,6 @@ EBike.java            → Derived class (fare + ETA logic)
 SmartTransportDemo.java → Main driver class demonstrating polymorphism
 ```
 
----
-
 ## ⚙️ **Compilation & Execution (Command Line)**
 
 ```
@@ -61,8 +59,6 @@ cd SmartTransportSystem
 javac app/MainApp.java transport/*.java
 java app.MainApp
 ```
-
----
 
 ## 🧮 **Sample Output**
 
